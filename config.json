@@ -1,0 +1,8 @@
+{
+    "file": ["/datasets/dsc180a-wi20-public/Genome/vcf/sample/chr22_test.vcf.gz"],
+    "filepath": ["data/interim"],
+    "output" : ["data/interim/chr22"],
+    "maf": [0.05],
+    "geno": [0.1],
+    "mind":[0.05]
+}
