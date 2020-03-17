@@ -13,6 +13,20 @@ if not os.path.exists(fp):
     cmd = shlex.split('mkdir -p ' + fp)
     sp.call(cmd, shell = True)
 
+with open('config.json') as json_file:
+    config = json.load(json_file)
+fp = config['filepath'][0]
+file = config['file'][0]
+op = config['output'][0]
+maf = config['maf'][0]
+geno = config['geno'][0]
+mind = config['mind'][0]
+
+with open('dl.json') as json_file:
+    config = json.load(json_file)
+name = config['name'][0]
+file = config['file'][0]
+
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('data', help='input file to be edited in config file')
 parser.add_argument('process', help='data manipulation')
@@ -32,6 +46,10 @@ elif args.process == 'second_plot':
     etl.second_plot()
 elif args.process == 'outlier':
     etl.remove_outlier()
+elif args.process == 'dl':
+    etl.dlgenome(name, file)
+elif args.process == 'dlall':
+    etl.dlall(name, file)
 else:
     print("Please insert valid argument")
     #pca_first_round('data/interim/chr22', "chr22_test.vcf.gz")

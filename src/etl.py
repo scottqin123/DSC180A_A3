@@ -73,3 +73,17 @@ def pca_second_round():
 def second_plot(file = 'plink.eigenvec'):
     tb = pd.read_table(file, header = None, sep = ' ')
     tb.plot(2,3, kind = 'scatter')
+
+
+import urllib
+
+# this function takes in a number and a file name and download it
+def dlgenome(number, file):
+    tempfile = urllib.request.urlopen("ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/" + number + '/sequence_read/' + file)
+    with open(str(number) + '.fastq','wb') as output:
+        output.write(tempfile.read())
+
+#this function takes in a json and download all the needed file
+def dlall(js):
+    for i in js['file']:
+        dlgenome(js['name'], i)
