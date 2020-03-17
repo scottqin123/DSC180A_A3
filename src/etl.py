@@ -73,35 +73,3 @@ def pca_second_round():
 def second_plot(file = 'plink.eigenvec'):
     tb = pd.read_table(file, header = None, sep = ' ')
     tb.plot(2,3, kind = 'scatter')
-
-parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('data', help='input file to be edited in config file')
-parser.add_argument('process', help='data manipulation')
-
-args = parser.parse_args()
-
-
-if args.process == 'filter':
-    filter_SNP()
-elif args.process == 'firstPCA':
-    pca_first_round()
-elif args.process == 'first_plot':
-    first_plot()
-elif args.process == 'secondPCA':
-    pca_second_round()
-elif args.process == 'second_plot':
-    second_plot()
-elif args.process == 'outlier':
-    remove_outlier()
-else:
-    print("Please insert valid argument")
-    #pca_first_round('data/interim/chr22', "chr22_test.vcf.gz")
-
-
-
-
-#mkdir -p data/interim
-#plink2   --vcf /datasets/dsc180a-wi20-public/Genome/vcf/sample/chr22_test.vcf.gz   --make-bed   --snps-only   --maf 0.05   --geno 0.1   --mind 0.05   --recode   --out data/interim/chr22
-#plink2 --bfile data/interim/chr22 --pca
-#plink2 --bfile data/interim/chr22 --remove-fam listfile.txt --pca
-
